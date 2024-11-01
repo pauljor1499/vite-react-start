@@ -1,0 +1,10 @@
+// this file to enable auto-import suggestions using "@"
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"]
+        }
+    },
+    "include": ["src/**/*"]
+}
