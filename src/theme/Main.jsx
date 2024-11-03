@@ -1,51 +1,44 @@
 import { createTheme } from "@mui/material/styles";
 
+let color = {
+    primary: "#1976d2",
+    secondary: "#5d9edf",
+
+    white: "#ffff",
+    white200: "#ecf2f6",
+
+    gray: "#808080",
+};
+
 const getTheme = (mode) => {
     const themeMode = mode || "light";
 
     return createTheme({
         palette: {
             themeMode,
+            primary: {
+                main: color.primary,
+            },
+            secondary: {
+                main: color.secondary,
+            },
+            inherit: {
+                main: color.gray,
+            },
             ...(themeMode === "light" && {
-                primary: {
-                    main: "#1976d2",
-                },
-                secondary: {
-                    main: "#dc004e",
-                },
                 background: {
                     default: "#f5f5f5",
-                    paper: "#ffffff",
-                },
-                text: {
-                    primary: "#333333",
-                    secondary: "#666666",
+                    paper: color.white,
                 },
             }),
             ...(themeMode === "dark" && {
-                primary: {
-                    main: "#ffff",
-                },
-                secondary: {
-                    main: "#fefefe",
-                },
                 background: {
                     default: "#08192C",
                     paper: "#08192C",
                 },
                 text: {
-                    primary: "#ffffff",
-                    secondary: "#b0b0b0",
-                },
-            }),
-            ...(themeMode === "orange" && {
-                background: {
-                    default: "#ffccbc",
-                    paper: "#ffab40",
-                },
-                text: {
-                    primary: "#ffffff",
-                    secondary: "#b0b0b0",
+                    primary: color.white,
+                    secondary: color.white200,
                 },
             }),
         },
@@ -54,8 +47,39 @@ const getTheme = (mode) => {
         },
         spacing: 8,
         components: {
+            MuiTextField: {
+                styleOverrides: getTextFieldStyles(themeMode),
+            },
+            MuiFormControl: {
+                styleOverrides: getTextFieldStyles(themeMode),
+            },
             MuiButton: {
-                styleOverrides: getButtonStyles(themeMode),
+                styleOverrides: {
+                    root: {
+                        borderRadius: "2.5px",
+                    },
+                    primary: {
+                        backgroundColor: color.primary,
+                        color: color.white,
+                        "&:hover": {
+                            backgroundColor: "#1565c0",
+                        },
+                    },
+                    secondary: {
+                        backgroundColor: color.secondary,
+                        color: color.white,
+                        "&:hover": {
+                            backgroundColor: "#c51162",
+                        },
+                    },
+                    inherit: {
+                        backgroundColor: color.inherit,
+                        color: color.white,
+                        "&:hover": {
+                            backgroundColor: "#6e6e6e",
+                        },
+                    },
+                },
             },
             MuiPaper: {
                 styleOverrides: getPaperStyles(themeMode),
@@ -67,45 +91,56 @@ const getTheme = (mode) => {
                     },
                 },
             },
+            MuiSvgIcon: {
+                styleOverrides: getIconStyles(themeMode),
+            },
         },
     });
 };
 
-const getButtonStyles = (themeMode) => {
-    return {
-        root: {
-            borderRadius: "8px",
-            ...(themeMode === "light" && {
-                backgroundColor: "#1976d2",
-                color: "#ffffff",
-                "&:hover": {
-                    backgroundColor: "#1565c0",
+const getTextFieldStyles = (themeMode) => ({
+    root: {
+        ...(themeMode === "dark" && {
+            backgroundColor: "#1c2a3a",
+            "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                    borderColor: "#ffff",
                 },
-            }),
-            ...(themeMode === "dark" && {
-                backgroundColor: "#08192C",
-                color: "#ffffff",
-                border: ".5px solid white",
-                "&:hover": {
-                    backgroundColor: "#394656",
+                "&:hover fieldset": {
+                    borderColor: "#ffff",
                 },
-            }),
-            ...(themeMode === "orange" && {
-                backgroundColor: "#ff9800",
-                color: "#ffffff",
-                "&:hover": {
-                    backgroundColor: "#e68a00",
+                "&.Mui-focused fieldset": {
+                    borderColor: "#ffff",
                 },
-            }),
-        },
-    };
-};
+                "& input": {
+                    color: "#ffff",
+                },
+            },
+            "& .MuiInputLabel-root": {
+                color: "#b0b0b0",
+            },
+            "& .MuiInputLabel-root.Mui-focused": {
+                color: "#ffff",
+            },
+        }),
+    },
+});
 
 const getPaperStyles = (themeMode) => {
     return {
         root: {
             ...(themeMode === "dark" && {
                 border: ".5px solid white",
+            }),
+        },
+    };
+};
+
+const getIconStyles = (themeMode) => {
+    return {
+        root: {
+            ...(themeMode === "dark" && {
+                color: color.white,
             }),
         },
     };

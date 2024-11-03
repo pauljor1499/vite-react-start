@@ -12,7 +12,7 @@ export default defineConfig({
         },
     },
     server: {
-        port: 3000, //5173 default port
+        // port: 3000, //5173 default port
         host: true, //network host
         strictPort: true,
         open: true, //auto open browser

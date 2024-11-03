@@ -1,6 +1,6 @@
 import React from "react";
 import { RouteComponents } from "@/router/index";
-import { ThemeContextProvider } from "@/theme/ToggleTheme";
+import { ThemeContextProvider } from "@/theme/ThemeContext";
 
 const App = () => {
     return (

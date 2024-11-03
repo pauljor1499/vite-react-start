@@ -7,11 +7,14 @@ const routes = createBrowserRouter([
     {
         path: "/",
         element: <LandingPage />,
+        children: [
+            {
+                path: "",
+                element: <LoginPage />,
+            },
+        ],
     },
-    {
-        path: "/login",
-        element: <LoginPage />,
-    },
+
     {
         path: "*",
         element: <ErrorPage />,
