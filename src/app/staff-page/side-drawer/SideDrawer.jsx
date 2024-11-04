@@ -201,7 +201,7 @@ export default function SideDrawer({ children }) {
                                     <Typography
                                         variant="body1"
                                         noWrap
-                                        color="primary"
+                                        color="colorTheme"
                                         sx={{
                                             display: { fontWeight: 700, letterSpacing: "3px" },
                                             margin: "auto",

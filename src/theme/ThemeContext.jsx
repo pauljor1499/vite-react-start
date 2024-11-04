@@ -26,6 +26,18 @@ export const ThemeToggleProvider = ({ children }) => {
                     styleOverrides: {
                         root: {
                             color: presetColors.button?.textColor || colorPresets["default"].button.textColor,
+                            // background: presetColors.button?.gradient || colorPresets.default.button.gradient,
+                            "&:hover": {
+                                background: presetColors.button?.gradient || colorPresets.default.button.gradient,
+                            },
+                        },
+                    },
+                },
+                MuiAppBar: {
+                    styleOverrides: {
+                        root: {
+                            background: presetColors.appBar?.gradient || colorPresets.default.appBar.gradient,
+                            color: presetColors.appBar?.textColor || colorPresets.default.appBar.textColor,
                         },
                     },
                 },

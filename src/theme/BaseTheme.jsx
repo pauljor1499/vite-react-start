@@ -6,10 +6,17 @@ const commonSettings = {
     },
 };
 
+const commonPallete = {
+    colorTheme: {
+        main: "#0091de",
+    },
+};
+
 export const lightTheme = createTheme({
     ...commonSettings,
     palette: {
         mode: "light",
+        ...commonPallete,
         primary: {
             main: "#3f51b5",
         },
@@ -27,6 +34,7 @@ export const darkTheme = createTheme({
     ...commonSettings,
     palette: {
         mode: "dark",
+        ...commonPallete,
         primary: {
             main: "#64b5f6",
         },

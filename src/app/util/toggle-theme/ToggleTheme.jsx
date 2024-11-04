@@ -25,6 +25,9 @@ const ThemeToggleButton = () => {
                 <MenuItem value="green">Green</MenuItem>
                 <MenuItem value="purple">Purple</MenuItem>
                 <MenuItem value="red">Red</MenuItem>
+                <MenuItem value="greenGradient">Green Gradient</MenuItem>
+                <MenuItem value="purpleGradient">Purple Gradient</MenuItem>
+                <MenuItem value="redGradient">Red Gradient</MenuItem>
             </Select>
         </div>
     );
