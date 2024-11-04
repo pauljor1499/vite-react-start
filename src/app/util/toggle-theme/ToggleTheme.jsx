@@ -1,21 +1,33 @@
 import React from "react";
-import { Box } from "@mui/material";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
-import Brightness2Icon from "@mui/icons-material/Brightness2";
-import { useTheme } from "@/theme/ThemeContext"; // Adjust the path as needed
-import "./ToggleTheme.scss"; // Import the CSS file
+import "./ToggleTheme.scss";
+import { useThemeToggle } from "@/theme/ThemeContext";
+import { MenuItem, Select } from "@mui/material";
 
-const ThemeSwitch = () => {
-    const { toggleTheme, themeMode } = useTheme();
+const ThemeToggleButton = () => {
+    const { themeMode, toggleThemeMode, preset, changePreset } = useThemeToggle();
 
     return (
-        <div className={`${themeMode == "light" ? "lightMode" : "darkMode"}`}>
-            <input type="checkbox" className="sr-only" id="darkmode-toggle" onClick={toggleTheme} />
-            <label htmlFor="darkmode-toggle" className="toggle">
-                <span></span>
-            </label>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <div className={themeMode === "light" ? "lightMode" : "darkMode"}>
+                <input
+                    type="checkbox"
+                    className="sr-only"
+                    id="darkmode-toggle"
+                    onChange={toggleThemeMode}
+                    checked={themeMode === "dark"}
+                />
+                <label htmlFor="darkmode-toggle" className="toggle">
+                    <span></span>
+                </label>
+            </div>
+            <Select value={preset} onChange={(e) => changePreset(e.target.value)} style={{ width: 200 }} size="small">
+                <MenuItem value="default">Default</MenuItem>
+                <MenuItem value="green">Green</MenuItem>
+                <MenuItem value="purple">Purple</MenuItem>
+                <MenuItem value="red">Red</MenuItem>
+            </Select>
         </div>
     );
 };
 
-export default ThemeSwitch;
+export default ThemeToggleButton;
